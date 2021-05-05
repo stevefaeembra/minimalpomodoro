@@ -1,0 +1,20 @@
+<!DOCTYPE html> 
+<head>
+</head>
+<body>
+  <h1>Steves Pomodoro</h1>
+  <form action="">
+    <button id="start" type="button">Start the clock</button>
+  </form>
+  <script defer>
+    let secs = 25 * 60;
+    let running = false;
+    document.getElementById('start').onclick = function changeContent() {
+      if (!running) {
+        alert('clicked start ');
+        running = true;
+        window.setInterval(a => {console.log('tick')}, 1000);
+      }
+    }
+  </script>
+</body>
