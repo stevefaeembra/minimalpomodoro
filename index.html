@@ -6,6 +6,11 @@
   <form action="">
     <button id="start" type="button">Start the clock</button>
   </form>
+  <div>
+    <h1 id="minutes" class="minutes">25</h1>
+    <h2> : </h2>
+    <h1 id="seconds" class="seconds">00</h1>
+  </div>
   <script defer>
     let secs = 25 * 60;
     let running = false;
@@ -13,7 +18,10 @@
       if (!running) {
         alert('clicked start ');
         running = true;
-        window.setInterval(a => {console.log('tick')}, 1000);
+        window.setInterval(a => {
+          console.log('tick', secs);
+          secs = secs - 1;
+        }, 1000);
       }
     }
   </script>
