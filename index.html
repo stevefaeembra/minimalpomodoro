@@ -10,9 +10,13 @@
       font-size: 15rem;
     }
     #start {
-      font-size: 5rem;
+      font-size: 3rem;
       border-radius: 2rem;
       background-color: green;
+      color: white;
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -25,6 +29,7 @@
     <span id="minutes" >25</span>
     <span> : </span>
     <span id="seconds" >00</span>
+    <audio id="bell" src="pomodoro bell.wav" type="audio/wav" preload="auto" controls="controls" oncontextmenu="return false;">Audio could not be loaded.</audio>
   </div>
   <script defer>
     let secs = 25 * 60;
@@ -37,7 +42,12 @@
         running = true;
         window.setInterval(a => {
           secs = secs - 1;
-          if (secs<0) {
+          if (secs<0 && running) {
+            document.getElementById('bell').play();
+            running = false;
+            return;
+          }
+          if (secs < 0) {
             return;
           }
           let minsVal = parseInt(secs / 60);
