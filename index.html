@@ -4,16 +4,18 @@
     body {
       margin: 0 auto;
       text-align: center;
-      font-family: monospace;
+      font-family: 'Courier New', Courier, monospace
     }
     span {
-      font-size: 15rem;
+      font-size: 5rem;
+      margin: 0;
     }
     #start {
       font-size: 3rem;
       border-radius: 2rem;
       background-color: green;
       color: white;
+      padding: 1rem;
     }
     audio {
       display: none;
@@ -27,7 +29,7 @@
   </form>
   <div>
     <span id="minutes" >25</span>
-    <span> : </span>
+    <span>:</span>
     <span id="seconds" >00</span>
     <audio id="bell" src="pomodoro bell.wav" type="audio/wav" preload="auto" controls="controls" oncontextmenu="return false;">Audio could not be loaded.</audio>
   </div>
@@ -56,7 +58,7 @@
           let secsText = secsVal.toString().padStart(2,'0');
           document.getElementById("minutes").innerHTML = minsText;
           document.getElementById("seconds").innerHTML = secsText;
-          window.document.title = `${minsText} : ${secsText}`;
+          window.document.title = `${minsText}:${secsText}`;
           
         }, 10);
       }
