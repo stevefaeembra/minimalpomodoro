@@ -1,5 +1,14 @@
 <!DOCTYPE html> 
 <head>
+  <style>
+    body {
+      margin: 0 auto;
+      text-align: center;
+    }
+    span {
+      font-size: 15rem;
+    }
+  </style>
 </head>
 <body>
   <h1>Steves Pomodoro</h1>
@@ -7,20 +16,25 @@
     <button id="start" type="button">Start the clock</button>
   </form>
   <div>
-    <h1 id="minutes" class="minutes">25</h1>
-    <h2> : </h2>
-    <h1 id="seconds" class="seconds">00</h1>
+    <span id="minutes" >25</span>
+    <span> : </span>
+    <span id="seconds" >00</span>
   </div>
   <script defer>
     let secs = 25 * 60;
     let running = false;
+    let showMins = 0;
+    let showSecs = 0;
     document.getElementById('start').onclick = function changeContent() {
       if (!running) {
-        alert('clicked start ');
         running = true;
         window.setInterval(a => {
-          console.log('tick', secs);
           secs = secs - 1;
+          let shownMins = parseInt(secs / 60);
+          let shownSecs = (secs % 60);
+          console.log('Secs', showSecs / 60); 
+          document.getElementById("minutes").innerHTML = shownMins.toString().padStart(2,'0');
+          document.getElementById("seconds").innerHTML = shownSecs.toString().padStart(2,'0');
         }, 1000);
       }
     }
