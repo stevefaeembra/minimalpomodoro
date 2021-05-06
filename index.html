@@ -4,16 +4,22 @@
     body {
       margin: 0 auto;
       text-align: center;
+      font-family: monospace;
     }
     span {
       font-size: 15rem;
+    }
+    #start {
+      font-size: 5rem;
+      border-radius: 2rem;
+      background-color: green;
     }
   </style>
 </head>
 <body>
   <h1>Steves Pomodoro</h1>
   <form action="">
-    <button id="start" type="button">Start the clock</button>
+    <button id="start" type="button">START</button>
   </form>
   <div>
     <span id="minutes" >25</span>
@@ -25,17 +31,24 @@
     let running = false;
     let showMins = 0;
     let showSecs = 0;
+    window.document.title = "Pomodoro";
     document.getElementById('start').onclick = function changeContent() {
       if (!running) {
         running = true;
         window.setInterval(a => {
           secs = secs - 1;
-          let shownMins = parseInt(secs / 60);
-          let shownSecs = (secs % 60);
-          console.log('Secs', showSecs / 60); 
-          document.getElementById("minutes").innerHTML = shownMins.toString().padStart(2,'0');
-          document.getElementById("seconds").innerHTML = shownSecs.toString().padStart(2,'0');
-        }, 1000);
+          if (secs<0) {
+            return;
+          }
+          let minsVal = parseInt(secs / 60);
+          let secsVal = (secs % 60);
+          let minsText = minsVal.toString().padStart(2,'0');
+          let secsText = secsVal.toString().padStart(2,'0');
+          document.getElementById("minutes").innerHTML = minsText;
+          document.getElementById("seconds").innerHTML = secsText;
+          window.document.title = `${minsText} : ${secsText}`;
+          
+        }, 10);
       }
     }
   </script>
