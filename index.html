@@ -1,11 +1,12 @@
 <!DOCTYPE html> 
 <head>
+  <link rel="shortcut icon" href="./favicon.png">
   <style>
     body {
       background-color: black;
       margin: 0 auto;
       text-align: center;
-      font-family: 'Courier New', Courier, monospace
+      font-family: 'Courier New', Courier, monospace;
     }
     span {
       font-size: 15rem;
@@ -71,7 +72,7 @@
           document.getElementById("minutes").innerHTML = minsText;
           document.getElementById("seconds").innerHTML = secsText;
           window.document.title = `${minsText}:${secsText}`;
-        }, 10);
+        }, 1000);
       }
     }
   </script>
