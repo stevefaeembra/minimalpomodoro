@@ -28,6 +28,13 @@
       color: white;
       padding: 1rem;
     }
+    #pause {
+      font-size: 3rem;
+      border-radius: 2rem;
+      background-color: blueviolet;
+      color: white;
+      padding: 1rem;
+    }
     audio {
       display: none;
     }
@@ -37,6 +44,7 @@
   <h1>Steves Pomodoro</h1>
   <form action="">
     <button id="start" type="button">START</button>
+    <button id="pause" type="button">PAUSE</button>
     <button id="restart" type="button">RESET</button>
   </form>
   <div>
@@ -52,10 +60,17 @@
     document.getElementById('restart').onclick = function changeContent() {
       location.reload();
     };
+    document.getElementById('pause').onclick = function changeContent() {
+      running = !running;
+    };
     document.getElementById('start').onclick = function changeContent() {
-      if (!running) {
-        running = true;
+      running = true;
+      if (running) {
+        // running = true;
         window.setInterval(a => {
+          if (!running) {
+            return;
+          }
           secs = secs - 1;
           if (secs<0 && running) {
             document.getElementById('bell').play();
