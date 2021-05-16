@@ -69,12 +69,19 @@
     let totalsecs = pomo_mins * 60;
     let pc = 100.0;
     let running = false;
+    let paused = false;
     window.document.title = "Pomodoro";
     document.getElementById('restart').onclick = function changeContent() {
       location.reload();
     };
     document.getElementById('pause').onclick = function changeContent() {
       running = !running;
+      paused = !paused;
+      if (paused) {
+        document.getElementById('pause').innerHTML = 'RESUME';
+      } else {
+        document.getElementById('pause').innerHTML = 'RESUME';
+      }
     };
     document.getElementById('start').onclick = function changeContent() {
       running = true;
@@ -84,6 +91,7 @@
           if (!running) {
             return;
           }
+          document.getElementById('start').style.display = 'none';
           secs = secs - 1;
           pc = (secs/totalsecs)*100.0;
           if (secs<0 && running) {
