@@ -87,14 +87,16 @@
     <progress id="thermo" max="100" value="100"> 100% </progress>
   </div>
   <script defer>
-    let pomo_mins = 1;
+    let pomo_mins = 25;
     let secs = pomo_mins * 60;
     let totalsecs = pomo_mins * 60;
     let pc = 100.0;
     let running = false;
     let paused = false;
+    let tickety = null;
     window.document.title = "Pomodoro";
     document.getElementById('restart').onclick = function changeContent() {
+      clearInterval(tickety);
       location.reload();
       document.getElementById('start').style.display = 'none';
       document.getElementById('pause').style.display = 'none';
@@ -112,7 +114,7 @@
       running = true;
       if (running) {
         // running = true;
-        window.setInterval(a => {
+        tickety = window.setInterval(a => {
           if (!running) {
             return;
           }
