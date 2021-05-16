@@ -97,6 +97,7 @@
           if (secs<0 && running) {
             document.getElementById('bell').play();
             running = false;
+            document.getElementById('pause').style.display = 'none';
             return;
           }
           if (secs < 0) {
