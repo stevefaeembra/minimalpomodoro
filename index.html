@@ -45,14 +45,37 @@
     #thermo {
       width: 50%;
     }
+    progress[value]::-moz-progress-bar { 
+  background-image:
+    -moz-linear-gradient(
+      135deg, 
+      transparent 33%, 
+      rgba(0, 0, 0, 0.1) 33%, 
+      rgba(0, 0, 0, 0.1) 66%, 
+      transparent 66% 
+    ),
+    -moz-linear-gradient(
+      top, 
+      rgba(255, 255, 255, 0.25), 
+      rgba(0, 0, 0, 0.25)
+    ),
+    -moz-linear-gradient(
+      left, 
+      #09c, 
+      #f44
+    );
+
+  border-radius: 2px; 
+  background-size: 35px 20px, 100% 100%, 100% 100%; 
+}
   </style>
 </head>
 <body>
   <h1>Steves Pomodoro</h1>
   <form action="">
     <button id="start" type="button">START</button>
-    <button id="pause" type="button">PAUSE</button>
-    <button id="restart" type="button">RESET</button>
+    <button id="pause" type="button" style="display: none;">PAUSE</button>
+    <button id="restart" type="button" style="display: none;">RESET</button>
   </form>
   <div>
     <span id="minutes" >00</span>
@@ -73,6 +96,8 @@
     window.document.title = "Pomodoro";
     document.getElementById('restart').onclick = function changeContent() {
       location.reload();
+      document.getElementById('start').style.display = 'none';
+      document.getElementById('pause').style.display = 'none';
     };
     document.getElementById('pause').onclick = function changeContent() {
       running = !running;
@@ -92,6 +117,8 @@
             return;
           }
           document.getElementById('start').style.display = 'none';
+          document.getElementById('pause').style.display = '';
+           document.getElementById('restart').style.display = '';
           secs = secs - 1;
           pc = (secs/totalsecs)*100.0;
           if (secs<0 && running) {
