@@ -2,6 +2,10 @@
 <head>
   <link rel="shortcut icon" href="./favicon.png">
   <style>
+    h1 {
+      color: wheat;
+      font-size: 3rem;
+    }
     body {
       background-color: black;
       margin: 0 auto;
@@ -24,19 +28,22 @@
     #restart {
       font-size: 3rem;
       border-radius: 2rem;
-      background-color: blueviolet;
+      background-color: red;
       color: white;
       padding: 1rem;
     }
     #pause {
       font-size: 3rem;
       border-radius: 2rem;
-      background-color: blueviolet;
+      background-color: orange;
       color: white;
       padding: 1rem;
     }
     audio {
       display: none;
+    }
+    #thermo {
+      width: 50%;
     }
   </style>
 </head>
@@ -48,13 +55,19 @@
     <button id="restart" type="button">RESET</button>
   </form>
   <div>
-    <span id="minutes" >25</span>
+    <span id="minutes" >00</span>
     <span>:</span>
     <span id="seconds" >00</span>
     <audio id="bell" src="pomodoro bell.wav" type="audio/wav" preload="auto" controls="controls" oncontextmenu="return false;">Audio could not be loaded.</audio>
   </div>
+  <div>
+    <progress id="thermo" max="100" value="100"> 100% </progress>
+  </div>
   <script defer>
-    let secs = 25 * 60;
+    let pomo_mins = 1;
+    let secs = pomo_mins * 60;
+    let totalsecs = pomo_mins * 60;
+    let pc = 100.0;
     let running = false;
     window.document.title = "Pomodoro";
     document.getElementById('restart').onclick = function changeContent() {
@@ -72,6 +85,7 @@
             return;
           }
           secs = secs - 1;
+          pc = (secs/totalsecs)*100.0;
           if (secs<0 && running) {
             document.getElementById('bell').play();
             running = false;
@@ -80,6 +94,7 @@
           if (secs < 0) {
             return;
           }
+          document.getElementById('thermo').value = pc;
           let minsVal = parseInt(secs / 60);
           let secsVal = (secs % 60);
           let minsText = minsVal.toString().padStart(2,'0');
