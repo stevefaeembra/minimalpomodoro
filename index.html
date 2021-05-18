@@ -1,152 +1,90 @@
 <!DOCTYPE html> 
-<head>
-  <link rel="shortcut icon" href="./favicon.png">
-  <style>
-    body {
-      background-color: black;
-      margin: 0 auto;
-      text-align: center;
-      font-family: 'Courier New', Courier, monospace;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 3rem;
-      text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
-      color: cyan;
-    }
-    span {
-      font-size: 8rem;
-      margin: 0;
-      text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
-      color: cyan;
-    }
-    #start {
-      font-size: 2rem;
-      border-radius: 2rem;
-      background-color: green;
-      color: white;
-      padding: 1rem;
-    }
-    #restart {
-      font-size: 2rem;
-      border-radius: 2rem;
-      background-color: red;
-      color: white;
-      padding: 1rem;
-    }
-    #pause {
-      font-size: 2rem;
-      border-radius: 2rem;
-      background-color: orange;
-      color: white;
-      padding: 1rem;
-    }
-    audio {
-      display: none;
-    }
-    #thermo {
-      width: 50%;
-    }
-    .digits {
-      margin: 1rem;
-    }
-    progress[value]::-moz-progress-bar { 
-      background-image:
-      -moz-linear-gradient(
-        135deg, 
-        transparent 33%, 
-        rgba(0, 0, 0, 0.1) 33%, 
-        rgba(0, 0, 0, 0.1) 66%, 
-        transparent 66% 
-      ),
-      -moz-linear-gradient(
-        top, 
-        rgba(255, 255, 255, 0.25), 
-        rgba(0, 0, 0, 0.25)
-      ),
-      -moz-linear-gradient(
-        right, 
-        #09c, 
-        #f44
-      );
-      border-radius: 2px; 
-      background-size: 35px 20px, 100% 100%, 100% 100%; 
-    }
-  </style>
-</head>
-<body>
-  <h1>Steves Pomodoro</h1>
-  <form action="">
-    <button id="start" type="button">START</button> 
-    <button id="pause" type="button" style="display: none;">PAUSE</button>
-    <button id="restart" type="button" style="display: none;">RESET</button>
-  </form>
-  <div class="digits">
-    <span id="minutes" >00</span>
-    <span>:</span>
-    <span id="seconds" >00</span>
-    <audio id="bell" src="pomodoro bell.wav" type="audio/wav" preload="auto" controls="controls" oncontextmenu="return false;">Audio could not be loaded.</audio>
-  </div>
-  <div>
-    <progress id="thermo" max="100" value="100"> 100% </progress>
-  </div>
-  <script defer>
-    let pomo_mins = 1;
-    let secs = pomo_mins * 60;
-    let totalsecs = pomo_mins * 60;
-    let pc = 100.0;
-    let running = false;
-    let paused = false;
-    let tickety = null;
-    window.document.title = "Pomodoro";
-    document.getElementById('restart').onclick = function changeContent() {
-      clearInterval(tickety);
-      location.reload();
-      document.getElementById('start').style.display = 'none';
-      document.getElementById('pause').style.display = 'none';
-    };
-    document.getElementById('pause').onclick = function changeContent() {
-      running = !running;
-      paused = !paused;
-      if (paused) {
-        document.getElementById('pause').innerHTML = 'RESUME';
-      } else {
-        document.getElementById('pause').innerHTML = 'PAUSE';
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./favicon.png">
+    <link href="./style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="pomodoro timer, pomodoro, countdown, time management">
+  </head>
+  <body>
+    <header>
+      <h1>Pomodoro</h1>
+    </header>
+    <nav>
+      <button id="start" type="button">START</button> 
+      <button id="pause" type="button" style="display: none;">PAUSE</button>
+      <button id="restart" type="button" style="display: none;">RESET</button>
+    </nav>
+    <main>
+      <div class="digits">
+        <span id="minutes" >00</span>
+        <span>:</span>
+        <span id="seconds" >00</span>
+        <audio id="bell" src="pomodoro bell.wav" type="audio/wav" preload="auto" controls="controls" oncontextmenu="return false;">Audio could not be loaded.</audio>
+      </div>
+      <div>
+        <progress id="thermo" max="100" value="100"> 100% </progress>
+      </div>
+    </main>
+    <script defer>
+      let pomo_mins = 25;
+      let secs = pomo_mins * 60;
+      let totalsecs = pomo_mins * 60;
+      let pc = 100.0;
+      let running = false;
+      let paused = false;
+      let tickety = null;
+      window.document.title = "Pomodoro";
+      document.getElementById('restart').onclick = function changeContent() {
+        clearInterval(tickety);
+        location.reload();
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('pause').style.display = 'none';
+      };
+      document.getElementById('pause').onclick = function changeContent() {
+        running = !running;
+        paused = !paused;
+        if (paused) {
+          document.getElementById('pause').innerHTML = 'RESUME';
+        } else {
+          document.getElementById('pause').innerHTML = 'PAUSE';
+        }
+      };
+      document.getElementById('start').onclick = function changeContent() {
+        running = true;
+        if (running) {
+          // running = true;
+          tickety = window.setInterval(a => {
+            if (!running) {
+              return;
+            }
+            document.getElementById('start').style.display = 'none';
+            document.getElementById('pause').style.display = '';
+            document.getElementById('restart').style.display = '';
+            secs = secs - 1;
+            pc = (secs/totalsecs)*100.0;
+            if (secs<0 && running) {
+              document.getElementById('bell').play();
+              running = false;
+              document.getElementById('pause').style.display = 'none';
+              return;
+            }
+            if (secs < 0) {
+              tickety.clearInterval();
+              return;
+            }
+            document.getElementById('thermo').value = pc;
+            let minsVal = parseInt(secs / 60);
+            let secsVal = (secs % 60);
+            let minsText = minsVal.toString().padStart(2,'0');
+            let secsText = secsVal.toString().padStart(2,'0');
+            document.getElementById("minutes").innerHTML = minsText;
+            document.getElementById("seconds").innerHTML = secsText;
+            window.document.title = `${minsText}:${secsText}`;
+          }, 1000);
+        }
       }
-    };
-    document.getElementById('start').onclick = function changeContent() {
-      running = true;
-      if (running) {
-        // running = true;
-        tickety = window.setInterval(a => {
-          if (!running) {
-            return;
-          }
-          document.getElementById('start').style.display = 'none';
-          document.getElementById('pause').style.display = '';
-          document.getElementById('restart').style.display = '';
-          secs = secs - 1;
-          pc = (secs/totalsecs)*100.0;
-          if (secs<0 && running) {
-            document.getElementById('bell').play();
-            running = false;
-            document.getElementById('pause').style.display = 'none';
-            return;
-          }
-          if (secs < 0) {
-            tickety.clearInterval();
-            return;
-          }
-          document.getElementById('thermo').value = pc;
-          let minsVal = parseInt(secs / 60);
-          let secsVal = (secs % 60);
-          let minsText = minsVal.toString().padStart(2,'0');
-          let secsText = secsVal.toString().padStart(2,'0');
-          document.getElementById("minutes").innerHTML = minsText;
-          document.getElementById("seconds").innerHTML = secsText;
-          window.document.title = `${minsText}:${secsText}`;
-        }, 1000);
-      }
-    }
-  </script>
-</body>
+    </script>
+  </body>
+</html>

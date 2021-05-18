@@ -1,0 +1,69 @@
+body {
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: red;
+}
+span {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  color: red;
+}
+#start {
+  font-size: 2rem;
+  border-radius: 2rem;
+  background-color: green;
+  color: white;
+  padding: 1rem;
+}
+#restart {
+  font-size: 2rem;
+  border-radius: 2rem;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+}
+#pause {
+  font-size: 2rem;
+  border-radius: 2rem;
+  background-color: orange;
+  color: white;
+  padding: 1rem;
+}
+audio {
+  display: none;
+}
+#thermo {
+  width: 50%;
+}
+.digits {
+  margin: 1rem;
+}
+progress[value]::-moz-progress-bar { 
+  background-image:
+  -moz-linear-gradient(
+    135deg, 
+    transparent 33%, 
+    rgba(0, 0, 0, 0.1) 33%, 
+    rgba(0, 0, 0, 0.1) 66%, 
+    transparent 66% 
+  ),
+  -moz-linear-gradient(
+    top, 
+    rgba(255, 255, 255, 0.25), 
+    rgba(0, 0, 0, 0.25)
+  ),
+  -moz-linear-gradient(
+    right, 
+    #09c, 
+    #f44
+  );
+  border-radius: 2px; 
+  background-size: 35px 20px, 100% 100%, 100% 100%; 
+}
