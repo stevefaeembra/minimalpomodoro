@@ -2,38 +2,40 @@
 <head>
   <link rel="shortcut icon" href="./favicon.png">
   <style>
-    h1 {
-      color: wheat;
-      font-size: 3rem;
-    }
     body {
       background-color: black;
       margin: 0 auto;
       text-align: center;
       font-family: 'Courier New', Courier, monospace;
     }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+      color: cyan;
+    }
     span {
-      font-size: 15rem;
+      font-size: 8rem;
       margin: 0;
       text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
       color: cyan;
     }
     #start {
-      font-size: 3rem;
+      font-size: 2rem;
       border-radius: 2rem;
       background-color: green;
       color: white;
       padding: 1rem;
     }
     #restart {
-      font-size: 3rem;
+      font-size: 2rem;
       border-radius: 2rem;
       background-color: red;
       color: white;
       padding: 1rem;
     }
     #pause {
-      font-size: 3rem;
+      font-size: 2rem;
       border-radius: 2rem;
       background-color: orange;
       color: white;
@@ -44,6 +46,9 @@
     }
     #thermo {
       width: 50%;
+    }
+    .digits {
+      margin: 1rem;
     }
     progress[value]::-moz-progress-bar { 
       background-image:
@@ -60,7 +65,7 @@
         rgba(0, 0, 0, 0.25)
       ),
       -moz-linear-gradient(
-        left, 
+        right, 
         #09c, 
         #f44
       );
@@ -72,11 +77,11 @@
 <body>
   <h1>Steves Pomodoro</h1>
   <form action="">
-    <button id="start" type="button">START</button>
+    <button id="start" type="button">START</button> 
     <button id="pause" type="button" style="display: none;">PAUSE</button>
     <button id="restart" type="button" style="display: none;">RESET</button>
   </form>
-  <div>
+  <div class="digits">
     <span id="minutes" >00</span>
     <span>:</span>
     <span id="seconds" >00</span>
